@@ -20,6 +20,7 @@ namespace ProyectoGit
             InitializeComponent();
             Res = Convert.ToString(a);
             MessageBox.Show("HOLA MUNDO");
+            MessageBox.Show("HOLA MUNDO");
         }
     }
 
