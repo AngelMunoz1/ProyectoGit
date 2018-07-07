@@ -12,9 +12,16 @@ namespace ProyectoGit
 {
     public partial class Form1 : Form
     {
+
+        string Res ="";
+        int a = 1;
         public Form1()
         {
             InitializeComponent();
+            Res = Convert.ToString(a);            
         }
     }
+
+    
+
 }
