@@ -18,7 +18,8 @@ namespace ProyectoGit
         public Form1()
         {
             InitializeComponent();
-            Res = Convert.ToString(a);            
+            Res = Convert.ToString(a);
+            MessageBox.Show("HOLA MUNDO");
         }
     }
 
