@@ -47,6 +47,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LibPrintTicket, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\LibPrintTicket.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,16 +64,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Checador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Checador.Designer.cs">
+      <DependentUpon>Checador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Punto_Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Punto_Venta.Designer.cs">
+      <DependentUpon>Punto_Venta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestPrint.Designer.cs">
+      <DependentUpon>TestPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Verificador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Verificador.Designer.cs">
+      <DependentUpon>Verificador.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Checador.resx">
+      <DependentUpon>Checador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -80,6 +120,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Punto_Venta.resx">
+      <DependentUpon>Punto_Venta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestPrint.resx">
+      <DependentUpon>TestPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Verificador.resx">
+      <DependentUpon>Verificador.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="img\Productos.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,6 +154,53 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dll\LibPrintTicket.dll" />
+    <Content Include="img\13214357.jpg" />
+    <Content Include="img\17214223.jpg" />
+    <Content Include="img\17214280.jpg" />
+    <Content Include="img\17214297.jpg" />
+    <Content Include="img\17214372.jpg" />
+    <Content Include="img\2001866 - blue close cross exit shadow x.ico" />
+    <Content Include="img\2001867 - blue fast forward increase next shadow skip.ico" />
+    <Content Include="img\2001868 - backward blue decrease previous rewind shadow skip.ico" />
+    <Content Include="img\2001869 - blue enlarge expand grow shadow window.ico" />
+    <Content Include="img\2001870 - close cross exit multiply x.ico" />
+    <Content Include="img\2001871 - blue decrease line minus shadow subtract takeaway.ico" />
+    <Content Include="img\2001872 - blue level levels mixer settings shadow volume.ico" />
+    <Content Include="img\2001873 - back blue navigate previous rewind shadow.ico" />
+    <Content Include="img\2001874 - adjust blue high max shadow speaker volume.ico" />
+    <Content Include="img\2001875 - adjust blue mute shadow silence speaker volume.ico" />
+    <Content Include="img\2001876 - achieve blue favourite like rate shadow star.ico" />
+    <Content Include="img\2001877 - agree confirm continue ok shadow tick yes.ico" />
+    <Content Include="img\2001878 - adjust blue half medium shadow speaker volume.ico" />
+    <Content Include="img\2001879 - begin blue continue go play shadow start.ico" />
+    <Content Include="img\2001880 - begin continue forward navigate next shadow skip.ico" />
+    <Content Include="img\2001881 - blue details more settings shadow.ico" />
+    <Content Include="img\2001882 - adjust blue level low shadow volume.ico" />
+    <Content Include="img\2001883 - blue continuous loop refresh repeat shadow.ico" />
+    <Content Include="img\2001884 - blue menu playlist settings shadow.ico" />
+    <Content Include="img\2001885 - end square stop.ico" />
+    <Content Include="img\2001886 - blue minimise minimize retract shadow shrink small.ico" />
+    <Content Include="img\2001887 - add blue increase plus shadow.ico" />
+    <Content Include="img\2001888 - blue cog details gear menu settings shadow.ico" />
+    <Content Include="img\2001889 - blue end pause shadow stop wait.ico" />
+    <Content Include="img\2001890 - link linked media share social.ico" />
+    <Content Include="img\2001891 - blue recycle refresh replay restart shadow.ico" />
+    <Content Include="img\3132300 - blue history shadow.ico" />
+    <Content Include="img\3132303 - add blue multiple shadow.ico" />
+    <Content Include="img\3134297 - blue camera media player shadow.ico" />
+    <Content Include="img\1234567891236.jpg" />
+    <Content Include="img\Empleado17214357.jpg" />
+    <Content Include="img\Empleado17214372.jpg" />
+    <Content Include="img\Fondo.bmp" />
+    <Content Include="img\Fondo.png" />
+    <Content Include="img\fondo2.jpg" />
+    <Content Include="img\fondo3.jpg" />
+    <Content Include="img\fondocehca.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\perfil.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

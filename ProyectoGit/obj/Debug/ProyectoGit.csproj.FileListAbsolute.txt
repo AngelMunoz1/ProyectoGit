@@ -1,0 +1,16 @@
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\bin\Debug\ProyectoGit.exe.config
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\bin\Debug\ProyectoGit.exe
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\bin\Debug\ProyectoGit.pdb
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.Form1.resources
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.Properties.Resources.resources
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.Verificador.resources
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.csproj.GenerateResource.Cache
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.csproj.CoreCompileInputs.cache
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.exe
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.pdb
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.csprojResolveAssemblyReference.cache
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.Punto_Venta.resources
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\bin\Debug\LibPrintTicket.dll
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.TestPrint.resources
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.Checador.resources
+C:\Users\Angel Muñoz\source\repos\ProyectoGit\ProyectoGit\obj\Debug\ProyectoGit.Menu.resources

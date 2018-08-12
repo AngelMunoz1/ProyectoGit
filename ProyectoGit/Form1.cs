@@ -7,65 +7,198 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
 
 namespace ProyectoGit
 {
     public partial class Form1 : Form
     {
-        private List<Productos> listaProductos = new List<Productos>();
-        Productos[] producto = new Productos[3];
+        //Varible de clase que se utiliza para poder utilizar en el metodo de ultimo producto selecionado
+        private int lastSelected;
         public Form1()
         {
             InitializeComponent();           
         }
 
+        //Manda llamar el metodo CargaProductos, para inicializar el programa con los productos ya especificados
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Productos producto = new Productos();
-            //producto.pCodigo = 9123456789;
-            //producto.pNombre = "Miller";
-            //producto.pPrecio = 36.00f;
-            //rtb1.Text += producto.pCodigo + Environment.NewLine + producto.pNombre + Environment.NewLine + producto.pPrecio;
-            //Comentario nuevo
-            producto[0] = new Productos(1, "producto 1", 35.00f);
-            producto[1] = new Productos(2, "producto 2", 35.02f);
-            producto[2] = new Productos(3, "producto 3", 35.08f);
-            cargaProducto();
-
+            btnMenu.Location = new Point(1, this.Height - btnMenu.Height);
+            CargaProductos();
         }
-        private void cargaProducto()
+
+        //Carga los productos al dataGridView
+        private void CargaProductos()
         {
+            //agrega 2 posicisiones despues del . en el precio 
+            dataGridView1.Columns["Column3"].DefaultCellStyle.Format = "N2";
+
             try
             {
-                for (int i = 0; i < producto.Length; i++)
+                int counter = 0;
+                string line;
+
+                // Read the file and display it line by line.  
+                System.IO.StreamReader file =
+                    new System.IO.StreamReader("Productos.csv");
+                while ((line = file.ReadLine()) != null)
                 {
-                    dgv1.Rows.Add(producto[i].pCodigo, producto[i].pNombre, producto[i].pPrecio);
+                    dataGridView1.Rows.Add(line.Split(','));
+                    dataGridView1.Rows[counter].HeaderCell.Value = (counter + 1).ToString();
+                    counter++;
                 }
+                dataGridView1_Numerar();
+                file.Close();
             }
             catch (Exception err)
             {
-
-                MessageBox.Show("ERROR:" + Environment.NewLine + err);
+                MessageBox.Show("" + err);
             }
+        }
+
+        //Agrega nuevo producto al dataGridView
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+            bool existe = false;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (dataGridView1[0, i].Value.ToString() == txtIdProductos.Text)
+                {
+                    existe = true;
+                    break;
+                }
+            }
+
+            if (existe == false)
+            {
+                dataGridView1.Rows.Add(txtIdProductos.Text, txtNombre.Text, txtPrecio.Text);
+                dataGridView1_Numerar();
+            }
+            else
+            {
+                MessageBox.Show("No puede agregarse productos con codigo repetido", (MessageBoxButtons.OK).ToString());
+                Limpiar();
+            }
+
+        }
+
+        //Llena la informacion en los textboxs con el ultimo producto seleccionado
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // indice -1 = a los row headers
+            if (e.RowIndex != -1)
+            {
+                txtIdProductos.Text = dataGridView1[0, e.RowIndex].Value.ToString();
+                txtNombre.Text = dataGridView1[1, e.RowIndex].Value.ToString();
+                txtPrecio.Text = dataGridView1[2, e.RowIndex].Value.ToString();
+                lastSelected = e.RowIndex;
+                txtIdProductos.Enabled = false;
+            }
+
+        }
+
+        //Elimina productos del DataGridView
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desea eliminar " + dataGridView1[1,
+                lastSelected].Value.ToString() + " con Precio de : "
+                + dataGridView1[2, lastSelected].Value.ToString(), "Titulo de la ventana",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                dataGridView1.Rows.RemoveAt(lastSelected);
+            }
+            Limpiar();
+            dataGridView1_Numerar();
+        }
+
+        //limpia los textboxs
+        private void Limpiar()
+        {
+            txtIdProductos.Clear();
+            txtNombre.Clear();
+            txtPrecio.Clear();
+            txtIdProductos.Focus();
+        }
+
+        //Vuelve a enumarar los productos
+        private void dataGridView1_Numerar()
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].HeaderCell.Value
+                    = (i + 1).ToString();
+
+            }
+        }
+
+        //modifica los productos ya existentes
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desea modificar " + dataGridView1[1,
+                lastSelected].Value.ToString() + " con Precio de : "
+                + txtPrecio.Text, "Titulo de la ventana",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                dataGridView1[1, lastSelected].Value = txtNombre.Text;
+                dataGridView1[2, lastSelected].Value = txtPrecio.Text;
+            }
+            Limpiar();
+        }
+
+        //Guarda los datos del dataGridView en el archivo CSV especificado
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            dataGridView1.SelectAll();
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            DataObject dataObject = dataGridView1.GetClipboardContent();
+            File.WriteAllText("Productos.csv", dataObject.GetText(TextDataFormat.CommaSeparatedValue));
+
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.Show();
+            this.Hide();
         }
     }
 
+    //Clase de productos
     class Productos
     {
-        //Propiedades
-        public long pCodigo = 0;
-        public String pNombre = "";
-        public float pPrecio = 0.00f;
+        //propiedades
+        public long producto_codigo = 0;
+        public String producto_nombre = "";
+        public float producto_precio = 0.00f;
 
+
+        //Constructor vacio
         public Productos()
         {
-            MessageBox.Show("Me llamaron sin parametros");
+            //MessageBox.Show("Me llamaron vacio");
         }
-        public Productos(long pCodigo, String pNombre, float pPrecio)
+
+        //Constructor sobre cargado
+        public Productos(long producto_codigo, String producto_nombre, float producto_precio)
         {
-            this.pCodigo = pCodigo;
-            this.pNombre = pNombre;
-            this.pPrecio = pPrecio;
+            //MessageBox.Show("Me llamaron con parametros");
+            this.producto_codigo = producto_codigo;
+            this.producto_nombre = producto_nombre;
+            this.producto_precio = producto_precio;
         }
+
+        //Constructor sobre cargado
+        public Productos(long producto_codigo, String producto_nombre, double producto_precio)
+        {
+            //MessageBox.Show("Me llamaron con parametros");
+            this.producto_codigo = producto_codigo;
+            this.producto_nombre = producto_nombre;
+            this.producto_precio = float.Parse(producto_precio.ToString());
+        }
+
     }
 }
